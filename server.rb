@@ -1,8 +1,9 @@
 require 'sinatra'
-require_relative 'craigslist_scraper'
+require_relative 'public/craigslist_scraper'
 
 get '/jobs' do
-  File.read(CraigslistScraper::Scraper.new.scrape)
+  CraigslistScraper::Scraper.new.scrape
+  redirect '/job_log_82317.html'
 end
 
 get '/sinatra' do
