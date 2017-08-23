@@ -1,7 +1,7 @@
 require 'sinatra'
 require_relative 'craigslist_scraper'
 
-get '/' do
+get '/jobs' do
   File.read(CraigslistScraper::Scraper.new.scrape)
 end
 
