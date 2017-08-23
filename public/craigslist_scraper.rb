@@ -24,5 +24,3 @@ module CraigslistScraper
     end
   end
 end
-
-CraigslistScraper::Scraper.new.scrape
