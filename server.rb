@@ -2,7 +2,7 @@ require 'sinatra'
 require_relative 'public/craigslist_scraper'
 
 get '/jobs' do
-  category = params[:job]
+  job = params[:job]
   url = "https://miami.craigslist.org/search/"
   url.<<(job)
   unless job.nil?
