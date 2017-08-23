@@ -1,7 +1,8 @@
 require 'sinatra'
+require_relative 'craigslist_scraper'
 
 get '/' do
-  "hello sosa."
+  File.read(CraigslistScraper::Scraper.new.scrape)
 end
 
 get '/sinatra' do
