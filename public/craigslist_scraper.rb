@@ -19,7 +19,7 @@ module CraigslistScraper
       mm = time.month
       dd = time.day
       yy = time.year % 100
-      scrape_log = File.new("job_log_#{mm}#{dd}#{yy}.html", "w")
+      scrape_log = File.new("public/job_log_#{mm}#{dd}#{yy}.html", "w")
       p dom.css('li[data-pid]').each {|i| scrape_log.puts i}
     end
   end
