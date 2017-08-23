@@ -5,7 +5,7 @@ module CraigslistScraper
 
   class Scraper
     attr_reader :url
-    def initialize url="https://miami.craigslist.org/search/jjj"
+    def initialize url="https://miami.craigslist.org/search/sof"
       if url.is_a? String
         @url = url
       else
@@ -15,11 +15,11 @@ module CraigslistScraper
 
     def scrape
       dom = Nokogiri::HTML(open(@url))
-      time = Time.new
-      mm = time.month
-      dd = time.day
-      yy = time.year % 100
-      scrape_log = File.new("public/job_log_#{mm}#{dd}#{yy}.html", "w")
+      # time = Time.new
+      # mm = time.month
+      # dd = time.day
+      # yy = time.year % 100
+      scrape_log = File.new("public/job_log_today.html", "w")
       p dom.css('li[data-pid]').each {|i| scrape_log.puts i}
     end
   end
