@@ -5,7 +5,7 @@ get '/jobs' do
   job = params[:job]
   url = "https://miami.craigslist.org/search/"
   url.<<(job)
-  unless job.nil?
+  unless url == "https://miami.craigslist.org/search/"
     CraigslistScraper::Scraper.new(url).scrape
   else
     CraigslistScraper::Scraper.new.scrape
