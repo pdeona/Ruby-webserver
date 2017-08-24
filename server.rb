@@ -2,6 +2,10 @@ require 'sinatra'
 require_relative 'public/craigslist_scraper'
 
 get '/' do
+  File.open(File.join("public", "hello.html"))
+end
+
+get '/jobs' do
   time = Time.new
   mm = time.month
   dd = time.day

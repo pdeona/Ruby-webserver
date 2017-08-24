@@ -41,7 +41,7 @@ module CraigslistScraper
         element = element.to_s.chomp
         element.gsub!('<a href="', '<a href="http://miami.craigslist.org')
         # puts element+"<br>"
-        scrape_log.puts "#{i.+(1)}. "+element+"<br>"
+        scrape_log.print "#{i.+(1)}:"+element+"<br>"
       }
     end
   end
