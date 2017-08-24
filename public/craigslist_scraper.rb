@@ -13,6 +13,14 @@ module CraigslistScraper
       end
     end
 
+    def change_field query_string
+      if query_string.length == 3
+        @url = "https://miami.craigslist.org/search/".<<(query_string)
+      else
+        raise ArgumentError
+      end
+    end
+
     def scrape
       dom = Nokogiri::HTML(open(@url))
       # time = Time.new
@@ -26,5 +34,3 @@ module CraigslistScraper
     end
   end
 end
-
-CraigslistScraper::Scraper.new.scrape
