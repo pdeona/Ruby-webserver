@@ -41,7 +41,7 @@ module CraigslistScraper
       # yy = time.year % 100
       scrape_log = File.new("job_log_today.html", "w+")
       dom.css('li[class=result-row]').each_with_index { |element, i| 
-        Nokogiri::XML::Element.clean_up(element, '\'restore-link\'', '\'result-info\'', '\'icon icon-star\'')
+        Nokogiri::XML::Element.clean_up(element, "\'restore-link\'", "\'result-meta\'", "\'icon icon-star\'")
         element = element.to_s.chomp
         element.gsub!('<a href="', '<a href="http://miami.craigslist.org')
         # puts element+"<br>"
