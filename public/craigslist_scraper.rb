@@ -33,13 +33,9 @@ module CraigslistScraper
       end
     end
 
-    def scrape
+    def scrape log_name
       dom = Nokogiri::HTML(open(@url))
-      # time = Time.new
-      # mm = time.month
-      # dd = time.day
-      # yy = time.year % 100
-      scrape_log = File.new("job_log_today.html", "w+")
+      scrape_log = File.new("#{log_name}.html", "w+")
       dom.css('li[class=result-row]').each_with_index { |element, i| 
         Nokogiri::XML::Element.clean_up(element, "\'restore-link\'", "\'result-meta\'", "\'icon icon-star\'")
         element = element.to_s.chomp
