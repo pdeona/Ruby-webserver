@@ -1,5 +1,17 @@
 require 'nokogiri'
 require 'open-uri'
+module Nokogiri
+  module XML
+    class Element
+      def self.clean_up element
+        element.xpath("//*[@class='restore-link']").remove
+        element.xpath("//*[@class='result-meta']").remove
+        element.xpath("//*[@class='icon icon-star']").remove
+        element
+      end
+    end
+  end
+end
 
 module CraigslistScraper
   class Scraper
@@ -28,8 +40,7 @@ module CraigslistScraper
       # yy = time.year % 100
       scrape_log = File.new("job_log_today.html", "w+")
       dom.css('li[class=result-row]').each_with_index { |element, i| 
-        element.xpath("//*[@class='restore-link']").remove
-        element.xpath("//*[@class='result-meta']").remove
+        Nokogiri::XML::Element.clean_up(element)
         element = element.to_s.chomp
         element.gsub!('<a href="', '<a href="http://miami.craigslist.org')
         # puts element+"<br>"
