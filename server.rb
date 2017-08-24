@@ -12,7 +12,3 @@ get '/' do
   end
   send_file File.expand_path('job_log_today.html', settings.root)
 end
-
-get '/sinatra' do
-  "Hello Sinatra"
-end

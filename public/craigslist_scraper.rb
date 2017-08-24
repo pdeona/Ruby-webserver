@@ -28,11 +28,17 @@ module CraigslistScraper
       # dd = time.day
       # yy = time.year % 100
       scrape_log = File.new("job_log_today.html", "w+")
-      dom.css('li[data-pid]').each_with_index { |element, i| 
+      dom.css('li[class=result-row]').each_with_index { |element, i| 
         element = element.to_s
-        element.slice!("favorite this post")
-        scrape_log.puts "#{i.+(1)}. "+element.strip+"<br>"
+        element.slice!("favorite this post").slice!(%(
+                <span class="restore-narrow-text">restore</span>
+                <span class="restore-wide-text">restore this posting</span>))
+        element.gsub!('<a href="', '<a href="http://miami.craigslist.org')
+        # puts element+"<br>"
+        scrape_log.puts "#{i.+(1)}. "+element+"<br>"
       }
     end
   end
 end
+
+CraigslistScraper::Scraper.new.scrape
