@@ -20,7 +20,11 @@ module CraigslistScraper
       # dd = time.day
       # yy = time.year % 100
       scrape_log = File.new("job_log_today.html", "w+")
-      p dom.css('li[data-pid]').each {|i| scrape_log.puts i}
+      dom.css('li[data-pid]').each_with_index { |element, i| 
+        scrape_log.puts "#{i.+(1)}."+listing
+      }
     end
   end
 end
+
+CraigslistScraper::Scraper.new.scrape
