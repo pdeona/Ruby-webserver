@@ -29,7 +29,9 @@ module CraigslistScraper
       # yy = time.year % 100
       scrape_log = File.new("job_log_today.html", "w+")
       dom.css('li[data-pid]').each_with_index { |element, i| 
-        scrape_log.puts "#{i.+(1)}."+element+"<br>"
+        element = element.to_s
+        element.slice!("favorite this post")
+        scrape_log.puts "#{i.+(1)}. "+element.strip+"<br>"
       }
     end
   end
