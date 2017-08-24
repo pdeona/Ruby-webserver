@@ -50,4 +50,4 @@ module CraigslistScraper
     end
   end
 end
-CraigslistScraper::Scraper.new.scrape
+# CraigslistScraper::Scraper.new.scrape
